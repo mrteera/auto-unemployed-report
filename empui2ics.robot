@@ -1,5 +1,6 @@
 *** Settings ***
 Library    Selenium2Library
+Library    generate_cron.py
 
 *** Variables ***
 ${username}       username
@@ -9,10 +10,11 @@ ${SiteUrl}        http://empui.doe.go.th
 
 *** Test Cases ***
 GetAppointmentSchedule
-    Open Browser and Login
-    Goto tracking index page
-    Extract appointments from table
-    sleep    5s
+    # Open Browser and Login
+    # Goto tracking index page
+    # Extract appointments from table
+    Generate cron
+    # sleep    5s
     [Teardown]    Close Browser
 
 *** Keywords ***
@@ -38,3 +40,8 @@ Extract appointments from table
     Log to console      ${day4}\n
     Log to console      ${day5}\n
     Log to console      ${day6}\n
+
+Generate cron
+    generate a cron       04/09/2559
+    generate a cron       04/10/2559
+
