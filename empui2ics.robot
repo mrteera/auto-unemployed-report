@@ -8,7 +8,7 @@ ${Browser}        Google Chrome
 ${SiteUrl}        http://empui.doe.go.th
 
 *** Test Cases ***
-LoginTest
+GetAppointmentSchedule
     Open Browser and Login
     sleep    5s
     [Teardown]    Close Browser
