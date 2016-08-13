@@ -20,4 +20,4 @@ def generate_a_cron(appointments):
             command='python3 /opt/my_script.py'
         ).setall(formatted_date)
 
-    cron.write('cron_test')
+    cron.write('cron_empui')
