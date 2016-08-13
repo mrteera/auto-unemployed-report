@@ -2,19 +2,22 @@ from crontab import CronTab
 from datetime import datetime
 from faker import Factory
 
-def generate_a_cron(appointment_date):
-    fake = Factory.create()
-    random_time = fake.date_time(tzinfo=None)
-    a_appointment_date = datetime.strptime(appointment_date, '%d/%m/%Y')
-    new_year = a_appointment_date.year - 543
-    new_date = a_appointment_date.replace(
-        hour=random_time.hour,
-        minute=random_time.minute,
-        year=new_year
-    )
+def generate_a_cron(appointments):
     cron = CronTab(user=True)
+    for appointment_date in appointments:
+        fake = Factory.create()
+        random_time = fake.date_time(tzinfo=None)
 
-    job = cron.new(command='python3 /opt/my_script.py')
-    job.setall(new_date)
+        appointment_datetime = datetime.strptime(appointment_date, '%d/%m/%Y')
+        utc_year = appointment_datetime.year - 543
+        formatted_date = appointment_datetime.replace(
+            hour=random_time.hour,
+            minute=random_time.minute,
+            year=utc_year
+        )
+
+        cron.new(
+            command='python3 /opt/my_script.py'
+        ).setall(formatted_date)
 
     cron.write('cron_test')
