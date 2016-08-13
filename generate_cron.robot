@@ -6,15 +6,15 @@ Library    generate_cron.py
 *** Variables ***
 ${username}       username
 ${password}       password
-${Browser}        Google Chrome
+${Browser}        PhantomJS
 ${SiteUrl}        http://empui.doe.go.th
 
 *** Test Cases ***
 GetAppointmentSchedule
     Open Browser and Login
+    sleep 2s
     Goto tracking index page
     Extract appointments and generate cron
-    sleep    5s
     [Teardown]    Close Browser
 
 *** Keywords ***
